@@ -13,7 +13,6 @@ class CategoryTabsWidget extends StatefulWidget {
 
 class _CategoryTabsWidgetState extends State<CategoryTabsWidget> {
   int selectedindex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +23,9 @@ class _CategoryTabsWidgetState extends State<CategoryTabsWidget> {
           children: [
             TabBar(
               onTap: (index) {
-                selectedindex = index;
-                setState(() {});
+                setState(() {
+                  selectedindex = index;
+                });
               },
               tabs: widget.sources
                   .map((source) => SourceTap(

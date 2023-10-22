@@ -44,7 +44,7 @@ class _NewsListState extends State<NewsList> {
           );
         }
         if (state is NewsLoadedState) {
-          ListView.builder(
+         return ListView.builder(
               itemCount: state.newsList!.length??0,
               itemBuilder: (_, index) {
                 return NewsItem(state.newsList![index]);
