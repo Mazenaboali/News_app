@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/Core/model/Source.dart';
-import 'package:news_app/ui/Category/Category_tab_item.dart';
-import 'package:news_app/ui/News/News_List.dart';
+import 'package:news_app/domain/model/Source.dart';
+import 'package:news_app/presentation/category/source_tab_item.dart';
+import 'package:news_app/presentation/news/news_list.dart';
 
 class CategoryTabsWidget extends StatefulWidget {
-  List<Source> sources = [];
+  List<Source> sources;
+
   CategoryTabsWidget(this.sources);
 
   @override
@@ -12,7 +13,8 @@ class CategoryTabsWidget extends StatefulWidget {
 }
 
 class _CategoryTabsWidgetState extends State<CategoryTabsWidget> {
-  int selectedindex = 0;
+  int selectedIndex =0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,19 +24,18 @@ class _CategoryTabsWidgetState extends State<CategoryTabsWidget> {
         child: Column(
           children: [
             TabBar(
-              onTap: (index) {
+              onTap: (index){
                 setState(() {
-                  selectedindex = index;
+                  selectedIndex = index;
                 });
               },
-              tabs: widget.sources
-                  .map((source) => SourceTap(
-                      source, widget.sources.indexOf(source) == selectedindex))
-                  .toList(),
-              isScrollable: true,
               indicatorColor: Colors.transparent,
+                tabs: widget.sources.map((source) => SourceTab( source,
+                    widget.sources.indexOf(source)==selectedIndex
+                )).toList(),
+              isScrollable: true,
             ),
-            Expanded(child: NewsList(widget.sources[selectedindex])),
+            Expanded(child: NewsList(widget.sources[selectedIndex]))
           ],
         ),
       ),
